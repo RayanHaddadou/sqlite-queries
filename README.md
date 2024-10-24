@@ -172,6 +172,17 @@ const { id } = req.params
 
 si on le trouves pas ... error 404 ✂ 🧨
 
+```javascript
+db.get("SELECT * FROM cars WHERE id = ?", [id], (err, row) => {
+	if (err) {
+		res.status(500).json({ error: err.message })
+	} else {
+		// if now car found with that id
+		if (!row) return res.status(404).json({ msg: "car not found" })
+	}
+})
+```
+
 query:
 
 ```javascript

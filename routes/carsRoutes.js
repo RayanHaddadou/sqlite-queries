@@ -65,8 +65,15 @@ carsRouter.put("/:id", (req, res) => {
 
 // DELETE delete a car based on the param id
 carsRouter.delete("/:id", (req, res) => {
-	res.json({
-		msg: "update a car based on its id ... ",
+	const { id } = req.params
+
+	db.get("SELECT * FROM cars WHERE id = ?", [id], (err, row) => {
+		if (err) {
+			res.status(500).json({ error: err.message })
+		} else {
+			// if now car found with that id
+			if (!row) return res.status(404).json({ msg: "car not found" })
+		}
 	})
 })
 
