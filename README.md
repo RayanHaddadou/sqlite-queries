@@ -99,7 +99,7 @@ si tout est valide alors nous exécutons la requête
 
 ```javascript
 db.run(
-	"INSERT INTO cars (carName, carYear, carImg) VALUES (?, ?, ?)",
+	"INSERT INTO cars (carName, carYear, carImage) VALUES (?, ?, ?)",
 	[carName, carYear, carImg],
 	function (err) {
 		if (err) {
