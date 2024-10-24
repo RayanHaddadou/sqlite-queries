@@ -86,7 +86,7 @@ db.get("SELECT * FROM cars WHERE id = ?", [id], (err, row) => {
 ### POST - Ajouter une nouvelle voiture :
 
 ```javascript
-const { carName, carYear, carImg } = req.body
+const { carName, carYear, carImage } = req.body
 ```
 
 nous pouvons nous assurer que les données sont correctes ici. Nous devrions ajouter une sorte de validation
@@ -100,7 +100,7 @@ si tout est valide alors nous exécutons la requête
 ```javascript
 db.run(
 	"INSERT INTO cars (carName, carYear, carImage) VALUES (?, ?, ?)",
-	[carName, carYear, carImg],
+	[carName, carYear, carImage],
 	function (err) {
 		if (err) {
 			res.status(500).json({ error: err.message })
@@ -117,7 +117,7 @@ cette fois nous avons besoin de l'identifiant et des données envoyées dans le 
 
 ```javascript
 const { id } = req.params
-const { carName, carYear, carImg } = req.body
+const { carName, carYear, carImage } = req.body
 ```
 
 on valide ?
@@ -126,8 +126,8 @@ la query
 
 ```javascript
 db.run(
-	"UPDATE cars SET carName = ?, carYear = ?, carImg = ? WHERE id = ?",
-	[carName, carYear, carImg, id],
+	"UPDATE cars SET carName = ?, carYear = ?, carImage = ? WHERE id = ?",
+	[carName, carYear, carImage, id],
 	function (err) {
 		if (err) {
 			res.status(500).json({ error: err.message })
@@ -164,6 +164,6 @@ Vous pouvez tester les routes à l'aide de Postman ou de tout autre outil simila
 
 - GET http://localhost:3000/api/cars : Récupère toutes les voitures.
 - GET http://localhost:3000/api/cars/:id : Récupère une voiture spécifique par id.
-- POST http://localhost:3000/api/cars : Ajoute une nouvelle voiture en envoyant un JSON avec carName, carYear, et carImg.
+- POST http://localhost:3000/api/cars : Ajoute une nouvelle voiture en envoyant un JSON avec carName, carYear, et carImage.
 - PUT http://localhost:3000/api/cars/:id : Met à jour les informations d'une voiture par id.
 - DELETE http://localhost:3000/api/cars/:id : Supprime une voiture par id.
