@@ -82,6 +82,15 @@ db.get("SELECT * FROM cars WHERE id = ?", [id], (err, row) => {
 	}
 })
 ```
+❗❗ **Attention à ne pas envoyer deux fois la "res" !** Car Node.js n'appréciera pas cela et renverra une erreur disant "you can't send headers twice" (vous ne pouvez pas envoyer les en-têtes deux fois). ❗❗
+
+Nous devons supprimer / remplacer cela.
+
+```javascript
+res.json({
+		msg: "add a new car ... ",
+	})
+```
 
 ### POST - Ajouter une nouvelle voiture :
 
