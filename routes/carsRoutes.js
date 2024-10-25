@@ -73,13 +73,21 @@ carsRouter.delete("/:id", (req, res) => {
 		} else {
 			// if now car found with that id
 			if (!row) return res.status(404).json({ msg: "car not found" })
+				db.run("DELETE FROM cars WHERE id = ?", [id], function (err) {
+					if (err) {
+						res.status(500).json({ error: err.message })
+					} else {
+						res.json({ changes: this.changes })
+					}
+				})	
+			//res.json({msg:"Voiture effacé"})	
 		}
 	})
 })
 
 // GET one car based on its id
 carsRouter.get("/:id", (req, res) => {
-	const { id } = req.body
+	const { id } = req.params
 	db.get("SELECT * FROM cars WHERE id = ?", [id], (err, row) => {
 		if (err) {
 			res.status(500).json({ error: err.message })
